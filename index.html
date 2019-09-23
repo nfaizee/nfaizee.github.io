@@ -1,0 +1,137 @@
+<html>
+<head>
+<style>
+.joke {
+	position: absolute;
+    margin: 0px;
+    display: inline-block;
+    float: right;
+    top: 100px;
+    left: 100px;
+    background: #000;
+    color: white;
+	width: 500px;
+    height: 120px;
+}
+
+.tickler {
+	position: absolute;
+    margin: 0px;
+    width: 400px;
+    height: 40px;
+    display: inline-block;
+    float: right;
+    top: 100px;
+    left: 800px;
+    background: #000;
+    color: white;
+    padding: 10px;
+}
+
+.download {
+	position: absolute;
+    top: 100px;
+    left: 650px;
+    color: white;
+    padding: 10px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+     // http: //www.html5canvastutorials.com/tutorials/html5-canvas-wrap-text-tutorial/
+     function wrapText(context, text, x, y, maxWidth, lineHeight) {
+        var cars = text.split("\n");
+
+        for (var ii = 0; ii < cars.length; ii++) {
+
+            var line = "";
+            var words = cars[ii].split(" ");
+
+            for (var n = 0; n < words.length; n++) {
+                var testLine = line + words[n] + " ";
+                var metrics = context.measureText(testLine);
+                var testWidth = metrics.width;
+
+                if (testWidth > maxWidth) {
+                    context.fillText(line, x, y);
+                    line = words[n] + " ";
+                    y += lineHeight;
+                }
+                else {
+                    line = testLine;
+                }
+            }
+            context.fillText(line, x, y);
+            y += lineHeight;
+        }
+     }
+
+     function DrawText() {
+
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+
+		<!-- context.clearRect(0, 0, 500, 600); -->
+
+		var maxWidth = 1240;
+		var lineHeight = 60;
+		var x = 640; // (canvas.width - maxWidth) / 2;
+		var y = 600;
+			
+		var numOfLines = document.getElementById("joke").value.split("\n").length;
+		 
+		y = y - ((numOfLines-1)*20);
+
+		var text = document.getElementById("joke").value;
+		
+		context.drawImage($('img').get(0), 0, 0);
+
+		//setting the context
+		context.fillStyle = "white";
+		context.textBaseline = "middle";
+		context.textAlign = "center";
+
+		//refill tickler
+		context.font = 'Bold 38px Blogger Sans';
+        wrapText(context, text, x, y, maxWidth, lineHeight);
+		 
+		//refill tickler name
+		context.font = "Bold 34px Blogger Sans";
+		context.fillText(document.getElementById("tname").value,640,1240);
+     }
+
+    jQuery(document).ready(function () {
+
+        jQuery("#joke").keyup(function () {
+             DrawText();
+        });
+		 
+		jQuery("#tname").keyup(function () {
+             DrawText();
+        });		
+    });
+	
+	
+	download_img = function(el) {
+	  var image = document.getElementById("myCanvas").toDataURL("image/png");
+	  el.href = image;
+	};
+
+    </script>
+	
+	</head>
+<body>
+<div id="demo" style="display:inline-block;">
+	<form>
+		<a id="download" download="triangle.png">
+		<img style="display:none" src="http://i.imgur.com/4pjWhxH.png" align="left" crossorigin="Anonymous"/>
+		<textarea  class="joke" rows="4" cols="50" id="joke" form="usrform" align="right">Enter joke here...</textarea>
+		<input class="tickler" type="text" id="tname" value="Tickler: "></input>
+		<a class="download" id="download" download="TinyTickler.jpg" href="" onclick="download_img(this);">Download</a>		
+	</form>
+</div>
+<canvas id="myCanvas" width="1280" height="1280" align="left">
+</canvas>
+</body>
+</html>
