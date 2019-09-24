@@ -31,7 +31,7 @@
 .download {
 	position: absolute;
     top: 100px;
-    left: 685px;
+    left: 666px;
     color: white;
     padding: 10px;
 }
@@ -124,6 +124,15 @@
      }
 
     jQuery(document).ready(function () {
+	
+		var junction_font = new FontFace('Blogger Sans', 'url(./Blogger_Sans.otf)');
+			junction_font.load().then(function(loaded_face) {
+			document.fonts.add(loaded_face);
+			document.body.style.fontFamily = '"Blogger Sans", Blogger Sans';
+		}).catch(function(error) {
+			console.log(error);
+		// error occurred
+		});
 
         jQuery("#joke").keyup(function () {
              DrawText();
