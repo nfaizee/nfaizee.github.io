@@ -12,6 +12,6 @@
     "orientation": "any",
     "related_applications": [],
     "prefer_related_applications": false,
-    "icons": [https://i.imgur.com/4pjWhxH.png],
+    "icons": ["https://i.imgur.com/4pjWhxH.png"],
     "url": "http://nfaizee.github.io/"
 }
