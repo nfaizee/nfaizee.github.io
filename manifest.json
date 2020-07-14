@@ -1,0 +1,17 @@
+{
+    "dir": "ltr",
+    "lang": "en",
+    "name": "TinyTickler",
+    "short_name": "T2",
+    "scope": "/",
+    "display": "browser",
+    "start_url": "http://nfaizee.github.io/",
+    "background_color": "transparent",
+    "theme_color": "transparent",
+    "description": "",
+    "orientation": "any",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": [https://i.imgur.com/4pjWhxH.png],
+    "url": "http://nfaizee.github.io/"
+}
